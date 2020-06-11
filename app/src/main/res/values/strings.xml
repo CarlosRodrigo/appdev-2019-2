@@ -1,0 +1,44 @@
+<resources>
+    <!-- app_name is defined by flavor, please see app/build.gradle -->
+    <string name="confirm">Confirm</string>
+    <string name="share_session">Hey fellow, you can get a new session here: http://stickysessions.com/enter?session=%s</string>
+    <string name="bt_share_session">Share Session</string>
+    <string name="note_description_dialog_hint">What you want to add?</string>
+    <string name="cancel">Cancel</string>
+    <string name="starfish">Starfish</string>
+    <string name="starfish_description">To foster the thinking around practices and the value the team get from it.</string>
+    <string name="create">Create</string>
+    <string name="start">Start</string>
+    <string name="join">Join</string>
+    <string name="gain"><![CDATA[Gain & Pleasure]]></string>
+    <string name="gain_description">Talk about all work related things and how does if affects each participant.</string>
+    <string name="custom">Custom</string>
+    <string name="custom_description">Coming Soon! Create your own session and define which topics team will discuss about!</string>
+    <string name="list">Enter Session</string>
+    <string name="list_description">Enter in a Session previously created!</string>
+    <string name="session_title_activity">My Notes</string>
+    <string name="topic_title">Topic</string>
+    <string name="select_topic_dialog_message">Should select a topic</string>
+    <string name="content_description_add_note_action_button">add note action button</string>
+    <string name="content_description_session_type">image with a session representation</string>
+    <string name="remove">Remove</string>
+    <string name="toolbar_title_list_session">Active Sessions</string>
+    <string name="toolbar_title_meetings">Meetings</string>
+    <string name="topic_length">/100</string>
+    <string name="char_count_start">0</string>
+    <string name="retry">Retry</string>
+    <string name="content_description_app_logo_login">App\'s logo with Sticky Sessions text below</string>
+    <string name="log_in_with_gmail">Log In with Gmail</string>
+    <string name="log_in_with_the_token">Log In with the token</string>
+    <string name="version_text_format">v %s</string>
+    <string name="more">more</string>
+    <string name="responses">responses</string>
+    <!-- TODO: get the real number of responses and delete this resource -->
+    <string name="fixed_number_of_responses">6 responses</string>
+    <string name="content_description_dot">dot</string>
+    <string name="content_description_icon_session">icon representing sessions</string>
+    <string name="content_description_icon_participants">icon representing participants</string>
+    <string name="text_meeting_date_format">%s %s</string>
+    <string name="text_meeting_recents_section">Recents</string>
+    <string name="text_meeting_older_section">Older</string>
+</resources>

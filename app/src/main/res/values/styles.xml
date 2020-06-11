@@ -1,0 +1,152 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/coral</item>
+        <item name="android:windowBackground">@color/white_two</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="IntroTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/deep_purple</item>
+        <item name="colorPrimaryDark">@color/aubergine</item>
+        <item name="colorAccent">@color/coral</item>
+        <item name="android:windowBackground">@color/deep_purple</item>
+    </style>
+
+    <style name="LaunchTheme" parent="IntroTheme">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+    <style name="MaterialButtonIconStyle" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">#ff534b</item>
+    </style>
+
+    <style name="TextStyle2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="TextStyle9">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">#de000000</item>
+    </style>
+
+    <style name="TextStyle10">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">#ff534b</item>
+    </style>
+
+    <style name="MeetingCardViewStyle" parent="CardView">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardBackgroundColor">?attr/meetingCardBgColor</item>
+        <item name="android:layout_height">211dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="MeetingCardThemeRecent">
+        <item name="meetingCardBgColor">@color/deep_purple</item>
+        <item name="meetingCardTitleColor">#deffffff</item>
+        <item name="meetingCardTextColor">@color/white</item>
+        <item name="meetingCardDescColor">#b3ffffff</item>
+        <item name="meetingCardRespImage">@drawable/ic_resp_white</item>-
+        <item name="meetingCardRespColor">@color/white</item>
+        <item name="meetingCardPartImage">@drawable/ic_p_white</item>
+        <item name="meetingCardPartColor">@color/white</item>
+    </style>
+
+    <style name="MeetingCardThemeOld">
+        <item name="meetingCardBgColor">@color/white</item>
+        <item name="meetingCardTitleColor">#272727</item>
+        <item name="meetingCardTextColor">#272727</item>
+        <item name="meetingCardDescColor">@color/warm_grey</item>
+        <item name="meetingCardRespImage">@drawable/ic_resp_orange</item>
+        <item name="meetingCardRespColor">@color/coral</item>
+        <item name="meetingCardPartImage">@drawable/ic_p_orange</item>
+        <item name="meetingCardPartColor">@color/coral</item>
+    </style>
+
+    <style name="ProgressBarHorizontalStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:layout_height">5dp</item>
+    </style>
+
+    <style name="NoteContent">
+        <item name="android:background">#ffff88</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="NoteStyle">
+        <item name="android:fontFamily">@font/annie_use_your_telescope</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="NoteStyleForTopic" parent="NoteStyle">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="NoteStyleTitle" parent="NoteStyleForTopic">
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="NoteStyleTitlePreview" parent="NoteStyleForTopic">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="NoteStyleContent" parent="NoteStyle">
+        <item name="android:textSize">34sp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
+    <style name="NoteStyleContentPreview" parent="NoteStyleContent">
+        <item name="android:textSize">20sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="NoteTopic">
+        <item name="android:fontFamily">@font/annie_use_your_telescope</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="ChipTextStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="chipBackgroundColor">@color/chip_state_colors</item>
+    </style>
+
+</resources>

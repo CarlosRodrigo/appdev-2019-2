@@ -1,0 +1,181 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
+apply from: 'versioning.gradle'
+
+android {
+
+    def packageId = "br.org.cesar.discordtime.stickysessions"
+
+    def versionMap = getVersionMap()
+
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId packageId
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode versionMap.code
+        versionName versionMap.name
+        testInstrumentationRunner "br.org.cesar.discordtime.stickysessions.MockTestRunner"
+        manifestPlaceholders = [
+            orientation: "portrait"
+        ]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+    }
+
+    sourceSets {
+        main { res.srcDirs = ['src/main/res'] }
+        test { res.srcDirs = ['src/test/res/'] }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "server"
+
+    productFlavors {
+        prod {
+            dimension "server"
+            ext {
+                url = "http://35.237.70.49:3000"
+            }
+            resValue "string", "app_name", "Sticky Sessions"
+        }
+        stag {
+            dimension "server"
+            applicationId = "${packageId}.stag"
+            ext {
+                url = "http://35.237.70.49:5000"
+            }
+            resValue "string", "app_name", "Sticky Sessions (Staging)"
+        }
+        local {
+            dimension "server"
+            applicationId = "${packageId}.local"
+            ext {
+                url = "http://localhost:3000"
+            }
+            resValue "string", "app_name", "Sticky Sessions (Local)"
+        }
+        applicationVariants.all { variant ->
+            def flavors = variant.productFlavors
+            // flavorDimensions "server" -> 0
+            def server = flavors[0]
+            variant.buildConfigField "String", "URL", "\"${server[url.name]}\""
+        }
+    }
+
+    lintOptions {
+        lintConfig file("lint.xml")
+        abortOnError true
+        checkAllWarnings true
+        warningsAsErrors true
+    }
+
+    useLibrary 'android.test.runner'
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android X
+    implementation "androidx.appcompat:appcompat:${versions.androidx}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
+    implementation "androidx.recyclerview:recyclerview:${versions.androidx}"
+    implementation "androidx.annotation:annotation:${versions.androidx}"
+    implementation "androidx.legacy:legacy-support-v4:${versions.androidx}"
+    implementation "androidx.cardview:cardview:${versions.androidx}"
+    implementation "com.google.android.material:material:${versions.material}"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxkotlin:${versions.rx_kotlin}"
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.rx_android}"
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rx_java}"
+
+    // Retrofit 2
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
+
+    // OkHttp3
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+
+    // Dagger
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+
+    //Fabric
+    implementation("com.crashlytics.sdk.android:crashlytics:${versions.crashlytics}@aar") {
+        transitive = true
+    }
+
+    // Firebase
+    implementation "com.google.firebase:firebase-core:${versions.firebase_core}"
+    implementation "com.google.firebase:firebase-auth:${versions.firebase_auth}"
+    implementation "com.google.android.gms:play-services-auth:${versions.play_services_auth}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.robolectric:robolectric:${versions.robolectric}"
+    testImplementation "com.nhaarman:mockito-kotlin:${versions.mockito_kotlin}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
+
+    // Dagger for unit tests
+    testImplementation "com.google.dagger:dagger:${versions.dagger}"
+    kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // Instrumentation tests
+    // Core library
+    androidTestImplementation "androidx.test:core:${versions.test_core}"
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation "androidx.test:runner:${versions.test_runner}"
+    androidTestImplementation "androidx.test:rules:${versions.test_rules}"
+
+    // Assertions
+    androidTestImplementation "androidx.test.ext:junit:${versions.test_ext_junit}"
+    androidTestImplementation "androidx.test.ext:truth:${versions.test_ext_truth}"
+    androidTestImplementation "com.google.truth:truth:${versions.truth}"
+
+    // Espresso dependencies
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:${versions.espresso}"
+
+    // Other dependencies
+    androidTestImplementation "org.hamcrest:hamcrest-library:${versions.hamcrest}"
+    androidTestImplementation "com.google.dagger:dagger:${versions.dagger}"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
+}
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+apply plugin: 'kotlin-android-extensions'

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Lint is not recognizing androidx, material and
+    constraintlayout dependencies. -->
+    <issue id="MissingRegistered">
+        <ignore path="src/main/res/layout/*" />
+    </issue>
+
+    <!-- Lint is complaining about a possible overdraw
+    even after setting AppTheme background to @null -->
+    <issue id="Overdraw">
+        <ignore path="src/main/res/layout/toolbar_session.xml"/>\
+        <ignore path="src/main/res/layout/toolbar.xml"/>
+        <ignore path="src/main/res/layout/activity_main.xml" />
+        <ignore path="src/main/res/layout/activity_login.xml" />
+    </issue>
+
+    <!-- Lint is complaining about unused ids resolved by
+    kotlinx on activities -->
+    <issue id="UnusedIds">
+        <ignore path="src/main/res/layout/*.xml" />
+    </issue>
+
+    <!-- Lint asks to convert images to Webp format, but converting
+    the ones in this list didn't produce any clear benefits, in fact
+    in some cases files become larger. Command reference:
+    cwebp -q 75 -alpha_q 10 file_name-->
+    <issue id="ConvertToWebp">
+        <ignore path="src/main/res/drawable-hdpi/baseline_calendar_today_white_24.png"/>
+        <ignore path="src/main/res/drawable-mdpi/baseline_calendar_today_white_24.png"/>
+        <ignore path="src/main/res/drawable-xhdpi/baseline_calendar_today_white_24.png"/>
+        <ignore path="src/main/res/drawable-xxhdpi/baseline_calendar_today_white_24.png"/>
+        <ignore path="src/main/res/drawable-xxxhdpi/baseline_calendar_today_white_24.png"/>
+        <ignore path="src/main/res/drawable-*/ic_logo_with_name.png" />
+    </issue>
+
+    <!-- We might need to unsuppress this warning later
+    if we face 64K method limit or any performance issues,
+    but right now Android Studio actually tells to keep
+    private access and it would be annoying to config the
+    contrary on every machine. -->
+    <issue id="SyntheticAccessor" severity="ignore" />
+
+    <!-- Need to discuss this one with the team since this
+    warning has more than 300 ocurrences and forces use of
+    NotNull or Nullable annotations everywhere. -->
+    <issue id="UnknownNullness" severity="ignore" />
+
+    <!-- Autofill property for EditTexts is only used on API 26
+    or later. Providing it causes another lint warning which would
+    force us to have new layout files only for v26 -->
+    <issue id="Autofill" severity="ignore" />
+
+    <!-- Can't include Firebase App Indexing dependency right now
+    without conflicting with androidx support library -->
+    <issue id="GoogleAppIndexingApiWarning" severity="ignore" />
+
+    <!-- Lint keeps switching warning from android:showAsAction to
+    app:showAsAction and never goes way. It may be related to the
+    fact it can't find androidx dependencies correclty -->
+    <issue id="AppCompatResource" severity="ignore" />
+
+    <!-- Lint will just inform that there is a new version for dependencies -->
+    <issue id="NewerVersionAvailable" severity="informational" />
+    <issue id="GradleDependency" severity="informational" />
+
+</lint>
