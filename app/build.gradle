@@ -4,6 +4,7 @@ apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-kapt'
 apply from: 'versioning.gradle'
+apply from: '../coverage.gradle'
 
 android {
 

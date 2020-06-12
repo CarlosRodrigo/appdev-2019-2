@@ -71,4 +71,19 @@ jobs:
           path: app/build/outputs/apk/
           destination: apks/
 
+      - run:
+          name: Run Lint and Unit tests
+          command: ./gradlew lintProdRelease testProdReleaseUnitTest
+
+      - store_test_results:
+          path: app/build/test-results
+
+      - run:
+          name: Generate Code Coverage report
+          command: ./gradlew jacocoStagDebugReport
+
+      - store_artifacts:
+          path: app/build/reports/jacoco/jacocoStagDebugReport
+          destination: coverage-report
+
       - *persist_to_workspace
