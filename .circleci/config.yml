@@ -86,4 +86,8 @@ jobs:
           path: app/build/reports/jacoco/jacocoStagDebugReport
           destination: coverage-report
 
+      - run:
+          name: Upload Code Coverage report to Coveralls
+          command: ./gradlew coveralls
+
       - *persist_to_workspace
