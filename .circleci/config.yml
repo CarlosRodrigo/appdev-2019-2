@@ -28,6 +28,8 @@ references:
       paths:
         - app/build
         - ftl-tests
+        - fastlane
+        - Gemfile
 
   attach_workspace: &attach_workspace
     attach_workspace:
@@ -107,12 +109,39 @@ jobs:
           name: Run tests on Firebase Test Lab
           command: ftl-tests/run-tests.sh
 
+  deploy_to_firebase:
+    <<: *config_android
+
+    steps:
+      - *attach_workspace
+
+      - run:
+          name: Install fastlane
+          command: bundle install
+
+      - run:
+          name: Install Firebase CLI
+          command: |
+            curl -sL firebase.tools | bash
+
+      - run:
+          name: Deploy stag app to firebase distribution
+          command: |
+            bundle exec fastlane distribute app_id:$FIREBASE_APP_ID_STAG apk_path:$APK_PATH_STAG firebase_token:$FIREBASE_TOKEN testers:$STAG_TESTERS
+
 workflows:
   version: 2
   build_test_and_deploy:
     jobs:
       - build
       - test_instrumented:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_to_firebase:
           requires:
             - build
           filters:
